@@ -1,0 +1,12 @@
+.center {
+	margin-left: 20%;
+	width: 60%;
+}
+.clickPlayer {
+	cursor: pointer;
+	color: #00bbff;
+}
+.clickPlayer:hover {
+	font-style: underline;
+	color: #004cff;
+}

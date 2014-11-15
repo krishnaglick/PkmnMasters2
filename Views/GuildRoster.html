@@ -1,0 +1,53 @@
+<script type=text/javascript src="../Scripts/jquery.js"></script>
+<script type=text/javascript src="../Scripts/knockout.js"></script>
+<script type=text/javascript src="../Scripts/ko.mapping.js"></script>
+<script type=text/javascript src="../Scripts/utils.js"></script>
+<script type=text/javascript src="../Scripts/foundation.min.js"></script>
+<script type=text/javascript src="../ViewModels/GuildRosterViewModel.js"></script>
+<script type=text/javascript src="../ViewControllers/GuildRoster.js"></script>
+
+<link href="../Content/CSS/foundation.min.css" rel="stylesheet">
+<link href="../Content/CSS/GuildRoster.css" rel="stylesheet">
+
+<html>
+<head></head>
+<body>
+	<table class="center">
+		<thead>
+			<tr>
+				<th width="200">Character Name</th>
+				<th width="200">Rank</th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: guildMembers">
+			<tr>
+				<td data-bind="text: character.name, click: function() { $root.openModal($root, $data)}" class="clickPlayer"></td>
+				<td data-bind="text: getRankName(rank)"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div id="playerModal" class="reveal-modal" data-reveal>
+		<a class="close-reveal-modal">&#215;</a>
+		<div data-bind="text: guildMember().name"></div>
+		<div data-bind="text: getClass(guildMember().class)"></div>
+		<div data-bind="text: getRace(guildMember().race)"></div>
+		<div data-bind="text: playerStats().priStatName"></div>
+		<div data-bind="text: playerStats().priStatVal"></div>
+		<div data-bind="text: playerStats().secStatOneName"></div>
+		<div data-bind="text: playerStats().secStatOneVal"></div>
+		<div data-bind="text: playerStats().secStatTwoName"></div>
+		<div data-bind="text: playerStats().secStatTwoVal"></div>
+		<div data-bind="text: playerStats().secStatThreeName"></div>
+		<div data-bind="text: playerStats().secStatThreeVal"></div>
+		
+		<div data-bind="text: playerStats().crit"></div>
+		<div data-bind="text: playerStats().haste"></div>
+		<div data-bind="text: playerStats().health"></div>
+		<div data-bind="text: playerStats().leech"></div>
+		<div data-bind="text: playerStats().mastery"></div>
+		<div data-bind="text: playerStats().multistrike"></div>
+		<div data-bind="text: playerStats().versatility"></div>
+	</div>
+</body>
+</html>
