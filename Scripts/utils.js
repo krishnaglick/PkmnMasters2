@@ -77,28 +77,28 @@ function getClass(i) {
 function getClassIcon(i) {
     switch(i) {
         case 1:
-            return "../Images/warrior.bmp";
+            return "../Content/Images/warrior.bmp";
         case 2:
-            return "../Images/paladin.bmp";
+            return "../Content/Images/paladin.bmp";
         case 3:
-            return "../Images/hunter.bmp";
+            return "../Content/Images/hunter.bmp";
         case 4:
-            return "../Images/rogue.bmp";
+            return "../Content/Images/rogue.bmp";
         case 5:
-            return "../Images/priest.bmp";
+            return "../Content/Images/priest.bmp";
         case 6:
-            return "../Images/dk.bmp";
+            return "../Content/Images/dk.bmp";
         case 7:
-            return "../Images/shaman.bmp";
+            return "../Content/Images/shaman.bmp";
         case 8:
-            return "../Images/mage.bmp";
+            return "../Content/Images/mage.bmp";
         case 9:
-            return "../Images/warlock.bmp";
+            return "../Content/Images/warlock.bmp";
         case 10:
-            return "../Images/monk.bmp";
+            return "../Content/Images/monk.bmp";
         case 11:
-            return "../Images/druid.bmp";
+            return "../Content/Images/druid.bmp";
         default:
-            return "../Images/noclass.bmp";
+            return "../Content/Images/noclass.bmp";
     }
 }

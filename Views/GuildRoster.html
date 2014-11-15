@@ -27,27 +27,70 @@
 		</tbody>
 	</table>
 	
-	<div id="playerModal" class="reveal-modal" data-reveal>
-		<a class="close-reveal-modal">&#215;</a>
-		<div data-bind="text: guildMember().name"></div>
-		<div data-bind="text: getClass(guildMember().class)"></div>
-		<div data-bind="text: getRace(guildMember().race)"></div>
-		<div data-bind="text: playerStats().priStatName"></div>
-		<div data-bind="text: playerStats().priStatVal"></div>
-		<div data-bind="text: playerStats().secStatOneName"></div>
-		<div data-bind="text: playerStats().secStatOneVal"></div>
-		<div data-bind="text: playerStats().secStatTwoName"></div>
-		<div data-bind="text: playerStats().secStatTwoVal"></div>
-		<div data-bind="text: playerStats().secStatThreeName"></div>
-		<div data-bind="text: playerStats().secStatThreeVal"></div>
-		
-		<div data-bind="text: playerStats().crit"></div>
-		<div data-bind="text: playerStats().haste"></div>
-		<div data-bind="text: playerStats().health"></div>
-		<div data-bind="text: playerStats().leech"></div>
-		<div data-bind="text: playerStats().mastery"></div>
-		<div data-bind="text: playerStats().multistrike"></div>
-		<div data-bind="text: playerStats().versatility"></div>
+	<div id="playerModal" class="reveal-modal center" data-reveal>
+		<span class="close-reveal-modal">&#215;</span>
+		<div class="row">
+			<div class="small-12 column">
+				<span data-bind="text: guildMember().name"></span> - <span data-bind="text:guildMember().level"></span>
+				<span data-bind="text: getRace(guildMember().race)"></span>
+				<span data-bind="text: getClass(guildMember().class)"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 column">
+				<img data-bind="attr: {src: 'https://us.battle.net/static-render/us/' + guildMember().thumbnail}" class="playerImg" >
+			</div>
+			<div class="small-6 column">
+				<img data-bind="attr {src: getClassIcon(guildMember().class)}" class="playerImg" >
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 column">
+				<span data-bind="text: playerStats().priStatName"></span>: <span data-bind="text: playerStats().priStatVal"></span>
+			</div>
+			<div class="small-6 column">
+				<span data-bind="text: playerStats().secStatOneName"></span>: <span data-bind="text: playerStats().secStatOneVal"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 column">
+				<span data-bind="text: playerStats().secStatTwoName"></span>: <span data-bind="text: playerStats().secStatTwoVal"></span>
+			</div>
+			<div class="small-6 column">
+				<span data-bind="text: playerStats().secStatThreeName"></span>: <span data-bind="text: playerStats().secStatThreeVal"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 column">
+				Crit: <span data-bind="text: playerStats().crit"></span>%
+			</div>
+			<div class="small-6 column">
+				Haste: <span data-bind="text: playerStats().haste"></span>%
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 column">
+				Health: <span data-bind="text: playerStats().health"></span>
+			</div>
+			<div class="small-6 column">
+				Leech: <span data-bind="text: playerStats().leech"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 column">
+				Mastery: <span data-bind="text: playerStats().mastery"></span>%
+			</div>
+			<div class="small-6 column">
+				Multistrike: <span data-bind="text: playerStats().multistrike"></span>%
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 column">
+				Versatility: <span data-bind="text: playerStats().versatility"></span>
+			</div>
+			<div class="small-6 column">
+			</div>
+		</div>
 	</div>
 </body>
 </html>

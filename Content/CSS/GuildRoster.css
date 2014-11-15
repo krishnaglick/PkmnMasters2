@@ -2,6 +2,10 @@
 	margin-left: 20%;
 	width: 60%;
 }
+.playerImg {
+	height: 70px;
+	width: 70px;
+}
 .clickPlayer {
 	cursor: pointer;
 	color: #00bbff;

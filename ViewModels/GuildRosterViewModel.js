@@ -16,7 +16,7 @@ GuildRosterViewModel = function() {
 		
 		if(role == "DPS") {
 			if(bigStat == 'str') {
-				stats.priStatName = 'Str';
+				stats.priStatName = 'Strength';
 				stats.priStatVal = player.stats.str;
 				stats.secStatOneName = 'MH DPS';
 				stats.secStatOneVal = player.stats.mainHandDps;
@@ -26,7 +26,7 @@ GuildRosterViewModel = function() {
 				stats.secStatThreeVal = player.stats.attackPower;
 			}
 			else if(bigStat == 'int') {
-				stats.priStatName = 'Int';
+				stats.priStatName = 'Intelligence';
 				stats.priStatVal = player.stats.int;
 				stats.secStatOneName = 'Spell Power';
 				stats.secStatOneVal = player.stats.spellPower;
@@ -36,7 +36,7 @@ GuildRosterViewModel = function() {
 				stats.secStatThreeVal = player.stats.power;
 			}
 			else if(bigStat == 'agi' && !huntard) {
-				stats.priStatName = 'Agi';
+				stats.priStatName = 'Agility';
 				stats.priStatVal = player.stats.agi;
 				stats.secStatOneName = 'MH DPS';
 				stats.secStatOneVal = player.stats.mainHandDps;
@@ -46,7 +46,7 @@ GuildRosterViewModel = function() {
 				stats.secStatThreeVal = player.stats.attackPower;
 			}
 			else if(bigStat == 'agi' && huntard) {
-				stats.priStatName = 'Agi';
+				stats.priStatName = 'Agility';
 				stats.priStatVal = player.stats.agi;
 				stats.secStatOneName = 'Ranged DPS';
 				stats.secStatOneVal = player.stats.rangedDPS;
@@ -65,12 +65,12 @@ GuildRosterViewModel = function() {
 			stats.secStatOneName = 'Bonus Armor';
 			stats.secStatOneVal = player.stats.bonusArmor;
 			stats.secStatTwoName = 'Avoidance (Dodge + Parry)';
-			stats.secStatTwoVal = player.stats.parry + player.stats.dodge;
+			stats.secStatTwoVal = player.stats.parry.toFixed(2) + player.stats.dodge.toFixed(2);
 			stats.secStatThreeName = 'Block';
 			stats.secStatThreeVal = player.stats.block;
 		}
 		else if(role == "HEALING") {
-			stats.priStatName = 'Int';
+			stats.priStatName = 'Intelligence';
 			stats.priStatVal = player.stats.int;
 			stats.secStatOneName = 'Spell Power';
 			stats.secStatOneVal = player.stats.spellPower;
@@ -82,10 +82,10 @@ GuildRosterViewModel = function() {
 		else {
 			console.log("What the fuck");
 		}
-		stats.crit = player.stats.crit;
-		stats.haste = player.stats.haste;
-		stats.mastery = player.stats.mastery;
-		stats.multistrike = player.stats.multistrike;
+		stats.crit = player.stats.crit.toFixed(2);
+		stats.haste = player.stats.haste.toFixed(2);
+		stats.mastery = player.stats.mastery.toFixed(2);
+		stats.multistrike = player.stats.multistrike.toFixed(2);
 		stats.leech = player.stats.leech;
 		stats.versatility = player.stats.versatility;
 		stats.health = player.stats.health;
