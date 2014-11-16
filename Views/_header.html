@@ -1,0 +1,54 @@
+<nav class="top-bar" data-topbar role="navigation">
+	<ul class="title-area">
+		<li class="name">
+			<h1><a href="./Home.html">Pokemon Masters</a></h1>
+		</li>
+	</ul>
+
+	<section class="top-bar-section">
+		<!-- Left Nav Section -->
+		<ul class="left">
+			<li class="home"><a href="./Home.html">Home</a></li>
+			<li class="guildroster"><a href="./GuildRoster.html">Guild Roster</a></li>
+			<li class="apply"><a href="./Apply.html">Apply</a></li>
+		</ul>
+	
+		<!-- Right Nav Section -->
+		<ul class="right" data-bind="visible: loggedIn">
+			<li class="login" data-bind="visible: !loggedIn()" data-reveal-id="loginModal"><a href="#">Login</a></li>
+			<li class="register" data-bind="visible: !loggedIn()" data-reveal-id="registerModal"><a href="#">Register</a></li>
+			<li class="username" data-bind="visible: loggedIn"><a data-bind="text: authToken().username || ''"></a></li>
+		</ul>
+	</section>
+</nav>
+
+<div id="loginModal" class="reveal-modal center" data-reveal>
+	<span class="close-reveal-modal">&#215;</span>
+	
+	<div class="row">
+		<div class="small-4 column">
+			Username: <input type="text" data-bind="value: username" />
+		</div>
+		<div class="small-4 column end">
+			Password: <input type="text" data-bind="value: password" />
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="small-4 column">
+			<input type="button" data-bind="click: $parent.login" value="Login" />
+		</div>
+		<div class="small-4 column end">
+			<input type="button" data-bind="click: $root.register" value="Register" />
+		</div>
+	</div>
+</div>
+
+<div id="registerModal" class="reveal-modal center" data-reveal>
+	<span class="close-reveal-modal">&#215;</span>
+	<div class="row">
+		<div class="small-12 column">
+			
+		</div>
+	</div>
+</div>

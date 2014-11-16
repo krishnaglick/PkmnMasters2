@@ -111,7 +111,7 @@ GuildRosterViewModel.prototype.loadGuildMembers = function() {
 }
 
 GuildRosterViewModel.prototype.openModal = function(viewmodel, data) {
-	   $.ajax({
+   $.ajax({
 		type: "GET",
 		url: 'https://us.battle.net/api/wow/character/Blackrock/' + data.character.name + '?fields=items,talents,professions,progression,stats',
 		dataType: "jsonp",
