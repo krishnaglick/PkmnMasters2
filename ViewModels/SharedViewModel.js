@@ -1,9 +1,11 @@
 SharedViewModel = function() {
 	var self = this;
 	
-	this.username = ko.observable();
+	this.error = ko.observable('');
+	
+	this.username = ko.observable(docCookies.getItem('username') || '');
 	this.password = ko.observable();
-	this.authToken = ko.observable();
+	this.authToken = ko.observable(docCookies.getItem('authToken') || '');
 	
 	this.loggedIn = ko.computed(function() {
 		 if(self.authToken() == ''){
@@ -15,20 +17,31 @@ SharedViewModel = function() {
 
 SharedViewModel.prototype.login = function() {
 	//Hit backend, return datas.
-	debugger;
 	var self = this;
-	self.username("loginTest");
 	self.authToken("123-456");
 	docCookies.setItem('authToken', self.authToken(), '/');
-	docCookies.setItem('user', self.username(), '/');
+	docCookies.setItem('username', self.username(), '/');
+	self.password('');
+	$('#loginModal').foundation('reveal', 'close');
 }
 
 SharedViewModel.prototype.register = function() {
 	//Hit backend, return datas.
-	debugger
 	var self = this;
-	self.username("regTest");
-	self.authToken("123-456");
+	self.authToken("456-123");
 	docCookies.setItem('authToken', self.authToken(), '/');
-	docCookies.setItem('user', self.username(), '/');
+	docCookies.setItem('username', self.username(), '/');
+	self.password('');
+	$('#registerModal').foundation('reveal', 'close');
+}
+
+SharedViewModel.prototype.logout = function() {
+	docCookies.removeItem('authToken');
+	docCookies.removeItem('username');
+	this.username('');
+	this.authToken('');
+}
+
+SharedViewModel.prototype.clearError = function() {
+	this.error('');
 }

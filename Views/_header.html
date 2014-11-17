@@ -1,3 +1,5 @@
+<link href="../Content/CSS/shared.css" rel="stylesheet">
+
 <nav class="top-bar" data-topbar role="navigation">
 	<ul class="title-area">
 		<li class="name">
@@ -14,41 +16,54 @@
 		</ul>
 	
 		<!-- Right Nav Section -->
-		<ul class="right" data-bind="visible: loggedIn">
-			<li class="login" data-bind="visible: !loggedIn()" data-reveal-id="loginModal"><a href="#">Login</a></li>
-			<li class="register" data-bind="visible: !loggedIn()" data-reveal-id="registerModal"><a href="#">Register</a></li>
-			<li class="username" data-bind="visible: loggedIn"><a data-bind="text: authToken().username || ''"></a></li>
+		<ul class="right">
+			<li class="login" data-bind="visible: !loggedIn()" data-reveal-id="loginModal"><a>Login</a></li>
+			<li class="register" data-bind="visible: !loggedIn()" data-reveal-id="registerModal"><a>Register</a></li>
+			<li class="username" data-bind="visible: loggedIn"><a data-bind="text: username"></a></li>
+			<li class="logout" data-bind="visible: loggedIn, click: logout"><a>Logout</a></li>
 		</ul>
 	</section>
 </nav>
 
-<div id="loginModal" class="reveal-modal center" data-reveal>
+<div id="loginModal" class="reveal-modal" data-reveal>
 	<span class="close-reveal-modal">&#215;</span>
-	
-	<div class="row">
-		<div class="small-4 column">
-			Username: <input type="text" data-bind="value: username" />
-		</div>
+	<div class="row" data-bind="click: clearError">
 		<div class="small-4 column end">
-			Password: <input type="text" data-bind="value: password" />
+			<small class="error clearError" data-bind="text: error, visible: error() != ''"></small>
 		</div>
 	</div>
-	
 	<div class="row">
 		<div class="small-4 column">
-			<input type="button" data-bind="click: $parent.login" value="Login" />
+			Username: <input type="text" data-bind="textInput: username" />
 		</div>
 		<div class="small-4 column end">
-			<input type="button" data-bind="click: $root.register" value="Register" />
+			Password: <input type="password" data-bind="textInput: password" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-4 column">
+			<input type="button" data-bind="click: $root.login" value="Login" />
+		</div>
+		<div class="small-4 column end">
+			<input type="button" data-reveal-id="registerModal" value="Register" />
 		</div>
 	</div>
 </div>
 
-<div id="registerModal" class="reveal-modal center" data-reveal>
+<div id="registerModal" class="reveal-modal" data-reveal>
 	<span class="close-reveal-modal">&#215;</span>
 	<div class="row">
-		<div class="small-12 column">
-			
+		<div class="small-4 column">
+			Username: <input type="text" data-bind="textInput: username" />
+		</div>
+		<div class="small-4 column end">
+			Password: <input type="password" data-bind="textInput: password" />
 		</div>
 	</div>
+	<div class="row">
+		<div class="small-4 column end">
+			<input type="button" data-bind="click: $root.register" value="Register" />
+		</div>
+	</div>
+	<div class="alert-box alert round" data-bind="text: error, visible: error() != ''"></div>
 </div>

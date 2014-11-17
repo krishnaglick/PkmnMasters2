@@ -1,0 +1,6 @@
+.clearError {
+	cursor: pointer;
+}
+.username {
+	pointer-events: none;
+}

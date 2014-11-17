@@ -121,7 +121,7 @@ GuildRosterViewModel.prototype.openModal = function(viewmodel, data) {
 		console.log(data);
 		if(!ko.dataFor($('#playerModal')[0])) {
 			ko.applyBindings(viewmodel, $('#playerModal')[0]);
-		}			
+		}
 		$('#playerModal').foundation('reveal', 'open');
 	});
 }
