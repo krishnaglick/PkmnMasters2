@@ -55,9 +55,9 @@ GuildRosterViewModel = function() {
 				stats.priStatName = 'Agility';
 				stats.priStatVal = player.stats.agi;
 				stats.secStatOneName = 'Ranged DPS';
-				stats.secStatOneVal = player.stats.rangedDPS;
-				stats.secStatTwoName = '';
-				stats.secStatTwoVal = '';
+				stats.secStatOneVal = player.stats.rangedDps;
+				stats.secStatTwoName = 'Focus';
+				stats.secStatTwoVal = player.stats.power;
 				stats.secStatThreeName = 'Atk Power';
 				stats.secStatThreeVal = player.stats.attackPower;
 			}
