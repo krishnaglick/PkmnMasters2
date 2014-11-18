@@ -25,13 +25,13 @@
 		</thead>
 		<tbody data-bind="foreach: guildMembers">
 			<tr>
-				<td data-bind="text: character.name, click: function() { $root.openModal($root, $data)}" class="clickPlayer"></td>
+				<td data-bind="text: character.name, click: function() { $root.showPlayer($root, $data)}" class="clickPlayer"></td>
 				<td data-bind="text: getRankName(rank)"></td>
 			</tr>
 		</tbody>
 	</table>
 	
-	<div id="playerModal" class="reveal-modal center" data-reveal>
+	<div id="playerModal" class="reveal-modal small" data-reveal>
 		<span class="close-reveal-modal">&#215;</span>
 		<div class="row">
 			<div class="small-12 column">
@@ -44,7 +44,7 @@
 			<div class="small-6 column">
 				<img data-bind="attr: {src: 'https://us.battle.net/static-render/us/' + guildMember().thumbnail}" class="playerImg" >
 			</div>
-			<div class="small-6 column">
+			<div class="small-6 column end">
 				<img data-bind="attr {src: getClassIcon(guildMember().class)}" class="playerImg" >
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 			<div class="small-6 column">
 				<span data-bind="text: playerStats().priStatName"></span>: <span data-bind="text: playerStats().priStatVal"></span>
 			</div>
-			<div class="small-6 column">
+			<div class="small-6 column end">
 				<span data-bind="text: playerStats().secStatOneName"></span>: <span data-bind="text: playerStats().secStatOneVal"></span>
 			</div>
 		</div>
@@ -60,7 +60,7 @@
 			<div class="small-6 column">
 				<span data-bind="text: playerStats().secStatTwoName"></span>: <span data-bind="text: playerStats().secStatTwoVal"></span>
 			</div>
-			<div class="small-6 column">
+			<div class="small-6 column end">
 				<span data-bind="text: playerStats().secStatThreeName"></span>: <span data-bind="text: playerStats().secStatThreeVal"></span>
 			</div>
 		</div>
@@ -68,7 +68,7 @@
 			<div class="small-6 column">
 				Crit: <span data-bind="text: playerStats().crit"></span>%
 			</div>
-			<div class="small-6 column">
+			<div class="small-6 column end">
 				Haste: <span data-bind="text: playerStats().haste"></span>%
 			</div>
 		</div>
@@ -76,7 +76,7 @@
 			<div class="small-6 column">
 				Health: <span data-bind="text: playerStats().health"></span>
 			</div>
-			<div class="small-6 column">
+			<div class="small-6 column end">
 				Leech: <span data-bind="text: playerStats().leech"></span>
 			</div>
 		</div>
@@ -84,7 +84,7 @@
 			<div class="small-6 column">
 				Mastery: <span data-bind="text: playerStats().mastery"></span>%
 			</div>
-			<div class="small-6 column">
+			<div class="small-6 column end">
 				Multistrike: <span data-bind="text: playerStats().multistrike"></span>%
 			</div>
 		</div>
@@ -92,12 +92,36 @@
 			<div class="small-6 column">
 				Versatility: <span data-bind="text: playerStats().versatility"></span>
 			</div>
-			<div class="small-6 column">
+			<div class="small-6 column end">
 			</div>
 		</div>
 		<!-- Talents and Glyphs -->
-		<div class="row">
-			<!-- Need to learn about javascript templates! -->
+		<ul class="button-group round">
+			<li>
+				<div id="mainSpec" class="button tiny round" data-bind="text: playerStats().mainSpec.spec.name || '', visible: playerStats().mainSpec != ''" ></div>
+			</li>
+			<li>
+				<div id="offSpec" class="button tiny round" data-bind="text: playerStats().offSpec.spec.name || '', visible: playerStats().offSpec != ''" ></div>
+			</li>
+		</ul>
+		Talents
+		<div data-bind="foreach: guildMember().talents[activeSpec()].talents.sort(function(a, b) {return a.tier-b.tier;})">
+			<div class="row">
+				<div class="small-6 column end">
+					<div data-bind="text: spell.name"></div>
+				</div>
+			</div>
+		</div>
+		Glyphs
+		<div data-bind="foreach: [0, 1, 2]">
+			<div class="row">
+				<div class="small-6 column">
+					<div data-bind="text: $root.guildMember().talents[$root.activeSpec()].glyphs.major[$data].name"></div>
+				</div>
+				<div class="small-6 column end">
+					<div data-bind="text: $root.guildMember().talents[$root.activeSpec()].glyphs.minor[$data].name"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

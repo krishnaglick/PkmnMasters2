@@ -4,3 +4,6 @@
 .username {
 	pointer-events: none;
 }
+.column, .columns{
+  min-height: 1px;
+}

@@ -3,14 +3,20 @@ GuildRosterViewModel = function() {
 	this.guildMembers = ko.observableArray([]);
 	this.guildMember = ko.observable('');
 	
+	this.activeSpec = ko.observable('');
+	
 	this.playerStats = ko.computed(function() {
 		if(self.guildMember() == '')
 			return;
 		var player = self.guildMember();
 		var stats = {};
 		var activeSpec = player.talents[0].selected != null ? 0 : 1;
+		stats.mainSpec = player.talents[0] || '';
+		stats.offSpec = player.talents[1] || '';
 		
 		var role = player.talents[activeSpec].spec.role;
+		self.activeSpec(activeSpec);
+		
 		var bigStat = player.stats.agi > player.stats.int ? (player.stats.agi > player.stats.str ? 'agi' : 'str') : (player.stats.int > player.stats.str ? 'int' : 'str');
 		var huntard = player.stats.rangedDps > -1;
 		
@@ -64,10 +70,10 @@ GuildRosterViewModel = function() {
 			stats.priStatVal = player.stats.sta;
 			stats.secStatOneName = 'Bonus Armor';
 			stats.secStatOneVal = player.stats.bonusArmor;
-			stats.secStatTwoName = 'Avoidance (Dodge + Parry)';
-			stats.secStatTwoVal = player.stats.parry.toFixed(2) + player.stats.dodge.toFixed(2);
+			stats.secStatTwoName = 'Dodge + Parry';
+			stats.secStatTwoVal = (player.stats.parry + player.stats.dodge).toFixed(2) + '%';
 			stats.secStatThreeName = 'Block';
-			stats.secStatThreeVal = player.stats.block;
+			stats.secStatThreeVal = player.stats.block + '%';
 		}
 		else if(role == "HEALING") {
 			stats.priStatName = 'Intelligence';
@@ -110,7 +116,7 @@ GuildRosterViewModel.prototype.loadGuildMembers = function() {
 	});
 }
 
-GuildRosterViewModel.prototype.openModal = function(viewmodel, data) {
+GuildRosterViewModel.prototype.showPlayer = function(viewmodel, data) {
    $.ajax({
 		type: "GET",
 		url: 'https://us.battle.net/api/wow/character/Blackrock/' + data.character.name + '?fields=items,talents,professions,progression,stats',
