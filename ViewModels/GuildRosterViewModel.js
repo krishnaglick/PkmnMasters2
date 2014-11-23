@@ -3,19 +3,63 @@ GuildRosterViewModel = function() {
 	this.guildMembers = ko.observableArray([]);
 	this.guildMember = ko.observable('');
 	
-	this.activeSpec = ko.observable('');
+	this.progression = ko.observableArray([]);
+	this.selectedRaid = ko.observable('');
+	this.selectedRaidProgression = ko.computed(function() {
+		var progression = {
+			nProg : 0,
+			hProg : 0,
+			mProg : 0,
+			nMax : 0,
+			hMax : 0,
+			mMax : 0
+		};
+		
+		if(self.selectedRaid() != '') {
+			self.selectedRaid().bosses.forEach(function(val, i) {
+				if(val.mythicKills > 0) {
+					progression.mProg++;
+				}
+				progression.mMax++;
+				if(val.heroicKills > 0) {
+					progression.hProg++;
+				}
+				progression.hMax++;
+				if(val.normalKills > 0) {
+					progression.nProg++;
+				}
+				progression.nMax++;
+			});
+		}
+		
+		return progression;
+	});
+	
+	this.activeSpec = ko.observable(0);
 	
 	this.playerStats = ko.computed(function() {
 		if(self.guildMember() == '')
 			return;
+		
 		var player = self.guildMember();
 		var stats = {};
-		var activeSpec = player.talents[0].selected != null ? 0 : 1;
+		var activeSpec = self.activeSpec();
 		stats.mainSpec = player.talents[0] || '';
 		stats.offSpec = player.talents[1] || '';
 		
 		var role = player.talents[activeSpec].spec.role;
-		self.activeSpec(activeSpec);
+		
+		stats.glyphs = {
+			major : [player.talents[activeSpec].glyphs.major[0] || '',
+					 player.talents[activeSpec].glyphs.major[1] || '',
+					 player.talents[activeSpec].glyphs.major[2] || ''],
+			minor : [player.talents[activeSpec].glyphs.minor[0] || '',
+					 player.talents[activeSpec].glyphs.minor[1] || '',
+					 player.talents[activeSpec].glyphs.minor[2] || '']
+		};
+		
+		stats.ilvl = player.items.averageItemLevelEquipped;
+		stats.ilvlMax = player.items.averageItemLevel;
 		
 		var bigStat = player.stats.agi > player.stats.int ? (player.stats.agi > player.stats.str ? 'agi' : 'str') : (player.stats.int > player.stats.str ? 'int' : 'str');
 		var huntard = player.stats.rangedDps > -1;
@@ -124,7 +168,9 @@ GuildRosterViewModel.prototype.showPlayer = function(viewmodel, data) {
 		jsonp: 'jsonp'
 	}).done(function(data) {
 		viewmodel.guildMember(data);
-		console.log(data);
+		viewmodel.progression(data.progression.raids.reverse());
+		viewmodel.activeSpec(viewmodel.guildMember().talents[0].selected != null ? 0 : 1);
+		
 		if(!ko.dataFor($('#playerModal')[0])) {
 			ko.applyBindings(viewmodel, $('#playerModal')[0]);
 		}

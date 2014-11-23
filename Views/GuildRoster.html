@@ -34,10 +34,15 @@
 	<div id="playerModal" class="reveal-modal small" data-reveal>
 		<span class="close-reveal-modal">&#215;</span>
 		<div class="row">
-			<div class="small-12 column">
+			<h5 class="small-12 column">
 				<span data-bind="text: guildMember().name"></span> - <span data-bind="text:guildMember().level"></span>
 				<span data-bind="text: getRace(guildMember().race)"></span>
 				<span data-bind="text: getClass(guildMember().class)"></span>
+			</h5>
+		</div>
+		<div class="row">
+			<div class="small-12 column">
+				Item Level: <span data-bind="text: playerStats().ilvl"></span> / <span data-bind="text: playerStats().ilvlMax"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -106,10 +111,10 @@
 		</ul>
 		<div class="row">
 			<div class="small-6 column">
-				Talents
+				<h5>Talents</h5>
 			</div>
 			<div class="small-6 column">
-				Glyphs
+				<h5>Glyphs</h5>
 			</div>
 		</div>
 		<div class="row">
@@ -117,8 +122,27 @@
 				<div data-bind="text: spell.name"></div>
 			</div>
 			<div class="small-6 column end" data-bind="foreach: [0, 1, 2]">
-				<div data-bind="text: $root.guildMember().talents[$root.activeSpec()].glyphs.major[$data].name"></div>
-				<div data-bind="text: $root.guildMember().talents[$root.activeSpec()].glyphs.minor[$data].name"></div>
+				<div data-bind="text: $root.playerStats().glyphs.major[$data].name"></div>
+				<div data-bind="text: $root.playerStats().glyphs.minor[$data].name"></div>
+			</div>
+		</div>
+		<div class="row">
+			<h5>Progression</h5>
+		</div>
+		<div class="row">
+			<div class="small-6 column">
+				<select data-bind="options: progression, optionsText: 'name', value: selectedRaid"></select>
+			</div>
+			<div class="small-6 column end">
+				<div data-bind="visible: selectedRaidProgression().mProg > 0">
+					<span data-bind="text: selectedRaidProgression().mProg"></span> / <span data-bind="text: selectedRaidProgression().mMax"></span> Mythic
+				</div>
+				<div data-bind="visible: selectedRaidProgression().hProg > 0">
+					<span data-bind="text: selectedRaidProgression().hProg"></span> / <span data-bind="text: selectedRaidProgression().hMax"></span> Heroic
+				</div>
+				<div data-bind="visible: selectedRaidProgression().nProg > 0">
+					<span data-bind="text: selectedRaidProgression().nProg"></span> / <span data-bind="text: selectedRaidProgression().nMax"></span> Normal
+				</div>
 			</div>
 		</div>
 	</div>
