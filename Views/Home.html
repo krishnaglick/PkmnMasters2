@@ -3,7 +3,8 @@
 <script type="text/javascript" src="../Scripts/ko.mapping.js"></script>
 <script type="text/javascript" src="../Scripts/utils.js"></script>
 <script type="text/javascript" src="../Scripts/foundation.min.js"></script>
-<script type="text/javascript" src="../ViewModels/Home.js"></script>
+<script type="text/javascript" src="../Scripts/waypoints.min.js"></script>
+<script type="text/javascript" src="../ViewModels/HomeViewModel.js"></script>
 <script type="text/javascript" src="../ViewModels/SharedViewModel.js"></script>
 <script type="text/javascript" src="../ViewControllers/Home.js"></script>
 
@@ -16,6 +17,24 @@
 </head>
 <body>
 	<div class="navigation"></div>
-	
+	<span>
+		<script language="javascript" type="text/javascript" src="https://status.darkstarllc.com/ventrilo/?s=YTo1OntzOjI6ImlwIjtzOjMxOiJwb2tlbW9ubWFzdGVycy53YXJjcmFmdHZlbnQuY29tIjtzOjQ6InBvcnQiO3M6NToiMTE5NDUiO3M6MTg6InNob3dfdXNlcl9jb21tZW50cyI7czoxOiIwIjtzOjIxOiJzaG93X2NoYW5uZWxfY29tbWVudHMiO3M6MToiMCI7czo1OiJ0aGVtZSI7czo0OiJiYXJlIjt9"></script>
+	</span>
+	<div class="homePage center">
+		<!-- ko foreach: posts -->
+			<div class="row posts">
+				<div class="small-6 column">
+					<div data-bind="text: author"></div>
+					<div data-bind="text: date"></div>
+				</div>
+				<div class="small-6 column end">
+					<b class="postTitle" data-bind="visible: post != '', text: title"></b>
+					<div class="expandedPost hidden" data-bind="visible: post != '', text: post, click: $root.expandPost""></div>
+					<div class="partialPost" data-bind="visible: post != '', text: partialPost, click: $root.expandPost"></div>
+					<b><a data-bind="visible: post == '', text: title, attr: { href: url}"></a></b>
+				</div>
+			</div>
+		<!-- /ko -->
+	</div>
 </body>
 </html>

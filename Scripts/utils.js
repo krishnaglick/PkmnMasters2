@@ -4,8 +4,9 @@ function getRankName(i) {
         case 0:
             return "League Champion";
         case 1:
+			return "Elite 4";
         case 2:
-            return "Elite 4";
+            return "Elite 4 Troll Rank";
         case 3:
             return "E4 Alt";
         case 4:
@@ -142,3 +143,9 @@ var docCookies = {
     return aKeys;
   }
 };
+
+function timeToHuman(unixDate) {
+	var theDate = new Date(unixDate * 1000);
+	dateString = theDate.toGMTString();
+	return dateString;
+}

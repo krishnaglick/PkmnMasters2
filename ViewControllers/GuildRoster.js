@@ -1,6 +1,6 @@
 $(function() {
-	window.guild_roster_view_model = ko.mapping.fromJS(new GuildRosterViewModel());
-	window.shared_view_model = ko.mapping.fromJS(new SharedViewModel());
+	var guild_roster_view_model = ko.mapping.fromJS(new GuildRosterViewModel());
+	var shared_view_model = ko.mapping.fromJS(new SharedViewModel());
 	
 	guild_roster_view_model.activeSpec.subscribe(function() {
 		if(guild_roster_view_model.activeSpec() === 0) {

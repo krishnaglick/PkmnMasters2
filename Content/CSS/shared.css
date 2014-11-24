@@ -7,3 +7,6 @@
 .column, .columns{
   min-height: 1px;
 }
+.hidden {
+	display: none;
+}
