@@ -1,18 +1,19 @@
 HomeViewModel = function() {
 	var self = this;
+		
+	this.postList = ko.observableArray([]);
+	this.postsShown = ko.observable(10);
 	
 	this.posts = ko.observableArray([]);
-	//this.postList = ko.observableArray([]);
 	
-	this.postsShown = ko.observable(10);
+	this.canLoadMore = true;
 }
 
 HomeViewModel.prototype.loadPosts = function() {
 	var self = this;
-	  
+	
 	$.get('http://www.reddit.com/r/PokemonMasters/new.json?sort=new').success(function(data) {
-		self.posts($.map(data.data.children, function(post) {
-			console.log(post);
+		self.postList($.map(data.data.children, function(post) {
 			return {
 				type: post.data.is_self,
 				author: post.data.author + ' (' + (post.data.author_flair_text || 'No Flair') + ')',
@@ -23,9 +24,7 @@ HomeViewModel.prototype.loadPosts = function() {
 				title: post.data.title
 			}
 		}));
-		
-		//self.posts.push(self.postList().slice(0, self.postsShown()));
-	})
+	});
 }
 
 HomeViewModel.prototype.expandPost = function(data, event) {	
@@ -45,5 +44,16 @@ HomeViewModel.prototype.expandPost = function(data, event) {
 	else {
 		postPartial.hide(405);
 		postFull.slideDown();
+	}
+}
+
+HomeViewModel.prototype.loadMorePosts = function() {
+	var self = this;
+	
+	if(self.postsShown() < self.postList().length+1) {
+		self.postsShown(self.postsShown() + 2)
+	}
+	else {
+		self.canLoadMore = false;
 	}
 }

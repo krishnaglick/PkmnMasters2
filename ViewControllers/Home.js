@@ -13,4 +13,19 @@ $(function() {
 	ko.applyBindings(home_view_model, $('.homePage')[0]);
 	
 	$('.dsc-badge-header').remove();
+	
+	home_view_model.postList.subscribe(function() {
+		home_view_model.posts(home_view_model.postList.slice(0, Number(home_view_model.postsShown())));
+	});
+	home_view_model.postsShown.subscribe(function() {
+		home_view_model.posts(home_view_model.postList.slice(0, Number(home_view_model.postsShown())));
+	});
+	
+	$(window).scroll(function() {
+		if(home_view_model.canLoadMore) {
+			if($(window).scrollTop() > $(window).height() / 2) {
+				home_view_model.loadMorePosts();
+			}
+		}
+	});
 })
