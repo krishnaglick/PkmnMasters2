@@ -1,0 +1,44 @@
+<script type="text/javascript" src="../Scripts/jquery.js"></script>
+<script type="text/javascript" src="../Scripts/knockout.js"></script>
+<script type="text/javascript" src="../Scripts/ko.mapping.js"></script>
+<script type="text/javascript" src="../Scripts/utils.js"></script>
+<script type="text/javascript" src="../Scripts/foundation.min.js"></script>
+<script type="text/javascript" src="../ViewModels/ApplyViewModel.js"></script>
+<script type="text/javascript" src="../ViewModels/SharedViewModel.js"></script>
+<script type="text/javascript" src="../ViewControllers/Apply.js"></script>
+
+<link href="../Content/CSS/foundation.min.css" rel="stylesheet">
+<link href="../Content/CSS/Apply.css" rel="stylesheet">
+
+<html>
+<head>
+	<title>Apply</title>
+</head>
+<body>
+	<div class="navigation"></div>
+	<div class="applyToGuild center">
+		<div class="row">
+			<div class="small-4 column">
+				<input type="text" data-bind="textInput: firstName" placeholder="First Name"></input>
+			</div>
+			<div class="small-4 column">
+				<input type="text" data-bind="textInput: middleName" placeholder="Middle Name"></input>
+			</div>
+			<div class="small-4 column">
+				<input type="text" data-bind="textInput: lastName" placeholder="Last Name"></input>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-4 column">
+				<select data-bind="options: realmList, value: selectedRealm"></select>
+			</div>
+			<div class="small-4 column">
+				<input type="text" data-bind="textInput: characterName" placeholder="Character Name"></input>
+			</div>
+			<div class="small-4 column" data-bind="visible: character() != ''">
+				Item Level: <span data-bind="text: character() != '' ? character().items.averageItemLevelEquipped : ''"></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

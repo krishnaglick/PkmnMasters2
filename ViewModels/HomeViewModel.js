@@ -2,7 +2,7 @@ HomeViewModel = function() {
 	var self = this;
 		
 	this.postList = ko.observableArray([]);
-	this.postsShown = ko.observable(10);
+	this.postsShown = ko.observable(0);
 	
 	this.posts = ko.observableArray([]);
 	
@@ -24,6 +24,7 @@ HomeViewModel.prototype.loadPosts = function() {
 				title: post.data.title
 			}
 		}));
+		self.postsShown(10);
 	});
 }
 

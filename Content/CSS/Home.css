@@ -1,15 +1,13 @@
-.center {
-	margin-left: 20%;
-	width: 60%;
-}
 .row {
 	margin-top: 3%;
 	padding: 3%;
-	/*margin-bottom: 5%;*/
 }
 .posts {
 	border: 2px solid;
     border-radius: 25px;
+}
+.dsc-badge-header {
+	display: none;
 }
 #darkstarStatusBox {
 	position: fixed;

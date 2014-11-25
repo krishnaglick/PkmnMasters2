@@ -1,6 +1,6 @@
 $(function() {
-	window.home_view_model = ko.mapping.fromJS(new HomeViewModel());
-	window.shared_view_model = ko.mapping.fromJS(new SharedViewModel());
+	var home_view_model = ko.mapping.fromJS(new HomeViewModel());
+	var shared_view_model = ko.mapping.fromJS(new SharedViewModel());
 	
 	home_view_model.loadPosts();
 	
@@ -12,11 +12,6 @@ $(function() {
 	
 	ko.applyBindings(home_view_model, $('.homePage')[0]);
 	
-	$('.dsc-badge-header').remove();
-	
-	home_view_model.postList.subscribe(function() {
-		home_view_model.posts(home_view_model.postList.slice(0, Number(home_view_model.postsShown())));
-	});
 	home_view_model.postsShown.subscribe(function() {
 		home_view_model.posts(home_view_model.postList.slice(0, Number(home_view_model.postsShown())));
 	});

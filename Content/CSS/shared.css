@@ -10,3 +10,7 @@
 .hidden {
 	display: none;
 }
+.center {
+	margin-left: 20%;
+	width: 60%;
+}
