@@ -1,29 +1,31 @@
 <link href="../Content/CSS/shared.css" rel="stylesheet">
 
-<nav class="top-bar" data-topbar role="navigation">
-	<ul class="title-area">
-		<li class="name">
-			<h1><a href="./Home.html">Pokemon Masters</a></h1>
-		</li>
-	</ul>
+<div class="fixed">
+	<nav class="top-bar" data-topbar role="navigation">
+		<ul class="title-area">
+			<li class="name">
+				<h1><a href="./Home.html">Pokemon Masters</a></h1>
+			</li>
+		</ul>
 
-	<section class="top-bar-section">
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li class="home"><a href="./Home.html">Home</a></li>
-			<li class="guildroster"><a href="./GuildRoster.html">Guild Roster</a></li>
-			<li class="apply"><a href="./Apply.html">Apply</a></li>
-		</ul>
-	
-		<!-- Right Nav Section -->
-		<ul class="right">
-			<li class="login" data-bind="visible: !loggedIn()" data-reveal-id="loginModal"><a>Login</a></li>
-			<li class="register" data-bind="visible: !loggedIn()" data-reveal-id="registerModal"><a>Register</a></li>
-			<li class="username" data-bind="visible: loggedIn"><a data-bind="text: username"></a></li>
-			<li class="logout" data-bind="visible: loggedIn, click: logout"><a>Logout</a></li>
-		</ul>
-	</section>
-</nav>
+		<section class="top-bar-section">
+			<!-- Left Nav Section -->
+			<ul class="left">
+				<li class="home"><a href="./Home.html">Home</a></li>
+				<li class="guildroster"><a href="./GuildRoster.html">Guild Roster</a></li>
+				<li class="apply"><a href="./Apply.html">Apply</a></li>
+			</ul>
+		
+			<!-- Right Nav Section -->
+			<ul class="right">
+				<li class="login" data-bind="visible: !loggedIn()" data-reveal-id="loginModal"><a>Login</a></li>
+				<li class="register" data-bind="visible: !loggedIn()" data-reveal-id="registerModal"><a>Register</a></li>
+				<li class="username" data-bind="visible: loggedIn"><a data-bind="text: username"></a></li>
+				<li class="logout" data-bind="visible: loggedIn, click: logout"><a>Logout</a></li>
+			</ul>
+		</section>
+	</nav>
+</div>
 
 <div id="loginModal" class="reveal-modal" data-reveal>
 	<span class="close-reveal-modal">&#215;</span>

@@ -9,6 +9,7 @@ ApplyViewModel = function() {
 	
 	this.character = ko.observable('');
 	this.selectedRealm = ko.observable();
+	this.characterNameChanged = ko.observable('');
 	this.characterName = ko.observable('').extend({
 		rateLimit: { timeout: 500, method: "notifyWhenChangesStop" }
 	});
@@ -41,5 +42,6 @@ ApplyViewModel.prototype.loadCharacter = function() {
 		jsonp: 'jsonp'
 	}).done(function(player) {
 		self.character(player);
+		$('.characterInfo').slideDown();
 	});
 }
