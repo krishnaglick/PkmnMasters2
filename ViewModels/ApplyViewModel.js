@@ -13,6 +13,48 @@ ApplyViewModel = function() {
 	this.characterName = ko.observable('').extend({
 		rateLimit: { timeout: 500, method: "notifyWhenChangesStop" }
 	});
+	
+	this.typeOfCharacter = ko.computed(function() {
+		if(self.character() == '')
+			return;
+			
+		var activeSpec = self.character().talents[1] ? (self.character().talents[1].selected ? self.character().talents[1] : self.character().talents[0]) : self.character().talents[0];
+		
+		return activeSpec.spec.name;
+	});
+	
+	this.characterProgression = ko.computed(function() {
+		if(self.character() == '')
+			return;
+		
+		var raidTier = self.character().progression.raids[raidTier];
+		
+		var progression = {
+			mBosses : 0,
+			hBosses : 0,
+			nBosses : 0,
+			mKills : 0,
+			hKills : 0,
+			nKills : 0
+		};
+		$.map(raidTier.bosses, function (boss) {
+			progression['mBosses'] += boss.mythicKills ? 1 : 0;
+			progression['mKills'] += boss.mythicKills ? (boss.mythicKills > 0 ? 1 : 0 ): 0;
+			progression['hBosses'] += boss.heroicKills ? 1 : 0;
+			progression['hKills'] += boss.heroicKills ? (boss.heroicKills > 0 ? 1 : 0 ): 0;
+			progression['nBosses'] += boss.normalKills ? 1 : 0;
+			progression['nKills'] += boss.normalKills ? (boss.normalKills > 0 ? 1 : 0 ): 0;
+		});
+		
+		if(progression['mKills'] > 0)
+			return raidTier.name + ' Mythic: ' + progression['mKills'] + '/' + progression['mBosses'];
+		else if(progression['hKills'] > 0)
+			return raidTier.name + ' Heroic: ' + progression['hKills'] + '/' + progression['hBosses'];
+		else if(progression['nKills'] > 0)
+			return raidTier.name + ' Normal: ' + progression['nKills'] + '/' + progression['nBosses'];
+		
+		return '';
+	});
 }
 
 ApplyViewModel.prototype.loadRealms = function() {

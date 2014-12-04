@@ -37,7 +37,16 @@
 			</div>
 		</div>
 		<div class="row hidden characterInfo">
-			Item Level: <span data-bind="text: character() != '' ? character().items.averageItemLevelEquipped : ''"></span>
+			<div class="small-4 column">
+				Item Level: <span data-bind="text: character() != '' ? character().items.averageItemLevelEquipped : ''"></span>
+			</div>
+			<div class="small-4 column">
+				<span data-bind="text: characterProgression"></span>
+			</div>
+			<div class="small-4 column end">
+				<span data-bind="text: typeOfCharacter"></span> 
+				<span data-bind="text: getClass(character().class)"></span>
+			</div>
 		</div>
 	</div>
 </body>

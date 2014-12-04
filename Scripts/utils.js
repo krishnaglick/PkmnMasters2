@@ -1,3 +1,5 @@
+var raidTier = 32;
+
 function getRankName(i) {
     //Rank Names, will have to be manually updated if they change
     switch (i) {
