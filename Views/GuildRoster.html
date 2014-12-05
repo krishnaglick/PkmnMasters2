@@ -134,15 +134,7 @@
 				<select data-bind="options: progression, optionsText: 'name', value: selectedRaid"></select>
 			</div>
 			<div class="small-6 column end">
-				<div data-bind="visible: selectedRaidProgression().mProg > 0">
-					<span data-bind="text: selectedRaidProgression().mProg"></span> / <span data-bind="text: selectedRaidProgression().mMax"></span> Mythic
-				</div>
-				<div data-bind="visible: selectedRaidProgression().hProg > 0">
-					<span data-bind="text: selectedRaidProgression().hProg"></span> / <span data-bind="text: selectedRaidProgression().hMax"></span> Heroic
-				</div>
-				<div data-bind="visible: selectedRaidProgression().nProg > 0">
-					<span data-bind="text: selectedRaidProgression().nProg"></span> / <span data-bind="text: selectedRaidProgression().nMax"></span> Normal
-				</div>
+				<div data-bind="text: selectedRaidProgression"></div>
 			</div>
 		</div>
 	</div>

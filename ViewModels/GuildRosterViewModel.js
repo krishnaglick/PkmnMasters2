@@ -1,38 +1,42 @@
 GuildRosterViewModel = function() {
 	var self = this;
+	
 	this.guildMembers = ko.observableArray([]);
 	this.guildMember = ko.observable('');
 	
 	this.progression = ko.observableArray([]);
 	this.selectedRaid = ko.observable('');
 	this.selectedRaidProgression = ko.computed(function() {
+		if(self.selectedRaid() == '')
+			return;
+	
 		var progression = {
-			nProg : 0,
-			hProg : 0,
-			mProg : 0,
-			nMax : 0,
-			hMax : 0,
-			mMax : 0
+			mBosses : 0,
+			hBosses : 0,
+			nBosses : 0,
+			mKills : 0,
+			hKills : 0,
+			nKills : 0
 		};
+		var raidTier = self.selectedRaid();
 		
-		if(self.selectedRaid() != '') {
-			self.selectedRaid().bosses.forEach(function(val, i) {
-				if(val.mythicKills > 0) {
-					progression.mProg++;
-				}
-				progression.mMax++;
-				if(val.heroicKills > 0) {
-					progression.hProg++;
-				}
-				progression.hMax++;
-				if(val.normalKills > 0) {
-					progression.nProg++;
-				}
-				progression.nMax++;
-			});
-		}
+		$.map(raidTier.bosses, function (boss) {
+			progression['mBosses'] += boss.mythicKills ? 1 : 0;
+			progression['mKills'] += boss.mythicKills ? (boss.mythicKills > 0 ? 1 : 0 ): 0;
+			progression['hBosses'] += boss.heroicKills ? 1 : 0;
+			progression['hKills'] += boss.heroicKills ? (boss.heroicKills > 0 ? 1 : 0 ): 0;
+			progression['nBosses'] += boss.normalKills ? 1 : 0;
+			progression['nKills'] += boss.normalKills ? (boss.normalKills > 0 ? 1 : 0 ): 0;
+		});
 		
-		return progression;
+		if(progression['mKills'] > 0)
+			return raidTier.name + ' Mythic: ' + progression['mKills'] + '/' + progression['mBosses'];
+		else if(progression['hKills'] > 0)
+			return raidTier.name + ' Heroic: ' + progression['hKills'] + '/' + progression['hBosses'];
+		else if(progression['nKills'] > 0)
+			return raidTier.name + ' Normal: ' + progression['nKills'] + '/' + progression['nBosses'];
+		
+		return '';
 	});
 	
 	this.activeSpec = ko.observable(0);
