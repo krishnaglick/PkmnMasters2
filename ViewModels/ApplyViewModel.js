@@ -2,10 +2,11 @@ ApplyViewModel = function() {
 	var self = this;
 	
 	this.firstName = ko.observable();
-	this.middleName = ko.observable();
 	this.lastName = ko.observable();
 	
-	this.realmList = ko.observable();
+	
+	
+	this.realmList = ko.observable(['Loading Realms...']);
 	
 	this.character = ko.observable('');
 	this.selectedRealm = ko.observable();

@@ -1,5 +1,9 @@
 var raidTier = 32;
 
+var raidTimes = function() {
+	return "Friday and Saturday, 5pm - 10pm West Coast";
+}
+
 function getRankName(i) {
     //Rank Names, will have to be manually updated if they change
     switch (i) {
@@ -80,29 +84,29 @@ function getClass(i) {
 function getClassIcon(i) {
     switch(i) {
         case 1:
-            return "../Content/Images/warrior.bmp";
+            return "../Content/CSS/images/warrior.bmp";
         case 2:
-            return "../Content/Images/paladin.bmp";
+            return "../Content/CSS/images/paladin.bmp";
         case 3:
-            return "../Content/Images/hunter.bmp";
+            return "../Content/CSS/images/hunter.bmp";
         case 4:
-            return "../Content/Images/rogue.bmp";
+            return "../Content/CSS/images/rogue.bmp";
         case 5:
-            return "../Content/Images/priest.bmp";
+            return "../Content/CSS/images/priest.bmp";
         case 6:
-            return "../Content/Images/dk.bmp";
+            return "../Content/CSS/images/dk.bmp";
         case 7:
-            return "../Content/Images/shaman.bmp";
+            return "../Content/CSS/images/shaman.bmp";
         case 8:
-            return "../Content/Images/mage.bmp";
+            return "../Content/CSS/images/mage.bmp";
         case 9:
-            return "../Content/Images/warlock.bmp";
+            return "../Content/CSS/images/warlock.bmp";
         case 10:
-            return "../Content/Images/monk.bmp";
+            return "../Content/CSS/images/monk.bmp";
         case 11:
-            return "../Content/Images/druid.bmp";
+            return "../Content/CSS/images/druid.bmp";
         default:
-            return "../Content/Images/noclass.bmp";
+            return "../Content/CSS/images/noclass.bmp";
     }
 }
 

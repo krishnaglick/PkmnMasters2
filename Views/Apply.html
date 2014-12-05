@@ -1,6 +1,9 @@
 <script type="text/javascript" src="../Scripts/jquery.js"></script>
 <script type="text/javascript" src="../Scripts/knockout.js"></script>
 <script type="text/javascript" src="../Scripts/ko.mapping.js"></script>
+<script type="text/javascript" src="../Scripts/select2.min.js"></script>
+<script type="text/javascript" src="../Scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js"></script>
 <script type="text/javascript" src="../Scripts/utils.js"></script>
 <script type="text/javascript" src="../Scripts/foundation.min.js"></script>
 <script type="text/javascript" src="../ViewModels/ApplyViewModel.js"></script>
@@ -8,6 +11,11 @@
 <script type="text/javascript" src="../ViewControllers/Apply.js"></script>
 
 <link href="../Content/CSS/foundation.min.css" rel="stylesheet">
+<link href="http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css" rel="stylesheet">
+<link href="../Content/CSS/select2.css" rel="stylesheet">
+<link href="../Content/CSS/jquery-ui.min.css" rel="stylesheet">
+<link href="../Content/CSS/jquery-ui.structure.min.css" rel="stylesheet">
+<link href="../Content/CSS/jquery-ui.theme.min.css" rel="stylesheet">
 <link href="../Content/CSS/Apply.css" rel="stylesheet">
 
 <html>
@@ -21,16 +29,13 @@
 			<div class="small-4 column">
 				<input type="text" data-bind="textInput: firstName" placeholder="First Name"></input>
 			</div>
-			<div class="small-4 column">
-				<input type="text" data-bind="textInput: middleName" placeholder="Middle Name"></input>
-			</div>
-			<div class="small-4 column">
+			<div class="small-4 column end">
 				<input type="text" data-bind="textInput: lastName" placeholder="Last Name"></input>
 			</div>
 		</div>
 		<div class="row">
 			<div class="small-4 column">
-				<select data-bind="options: realmList, value: selectedRealm"></select>
+				<select class="realms" data-bind="options: realmList, value: selectedRealm" style="display: block"></select>
 			</div>
 			<div class="small-4 column end">
 				<input type="text" id="characterNameInput" data-bind="textInput: characterName" placeholder="Character Name"></input>
@@ -46,6 +51,37 @@
 			<div class="small-4 column end">
 				<span data-bind="text: typeOfCharacter"></span> 
 				<span data-bind="text: getClass(character().class)"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-3 column"></div>
+			<div class="small-9 column end">
+				<div>We raid <span data-bind="text: raidTimes()"></span>.</div>
+				<div>What times are you available?</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-2 column"></div>
+			<div class="small-1 column">
+				<input type="button" class="round-button monday" value="Mon"></input>
+			</div>
+			<div class="small-1 column">
+				<input type="button" class="round-button tuesday" value="Tue"></input>
+			</div>
+			<div class="small-1 column">
+				<input type="button" class="round-button wednesday" value="Wed"></input>
+			</div>
+			<div class="small-1 column">
+				<input type="button" class="round-button thursday" value="Thu"></input>
+			</div>
+			<div class="small-1 column">
+				<input type="button" class="round-button friday" value="Fri"></input>
+			</div>
+			<div class="small-1 column">
+				<input type="button" class="round-button saturday" value="Sat"></input>
+			</div>
+			<div class="small-1 column end">
+				<input type="button" class="round-button sunday" value="Sun"></input>
 			</div>
 		</div>
 	</div>
