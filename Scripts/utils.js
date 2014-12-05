@@ -1,4 +1,4 @@
-var raidTier = 32;
+var currentRaidTier = 32;
 
 var raidTimes = function() {
 	return "Friday and Saturday, 5pm - 10pm West Coast";

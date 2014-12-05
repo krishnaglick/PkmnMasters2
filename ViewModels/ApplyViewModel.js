@@ -28,7 +28,7 @@ ApplyViewModel = function() {
 		if(self.character() == '')
 			return;
 		
-		var raidTier = self.character().progression.raids[raidTier];
+		var raidTier = self.character().progression.raids[currentRaidTier];
 		
 		var progression = {
 			mBosses : 0,
